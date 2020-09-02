@@ -8,14 +8,39 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 1f;
 
+    // Keyboard and Mouse ONLY
 
-    public void Move(InputAction.CallbackContext context)
+    private void Update()
     {
-        
-        var moveDirection = context.ReadValue<Vector2>();
 
-        transform.position += new Vector3(moveDirection.x, moveDirection.y) * moveSpeed * Time.deltaTime;
+        playerMove();
 
     }
 
+    void playerMove()
+    {
+        if (Keyboard.current.wKey.ReadValue() > 0.0f)
+        {
+            // Move player up
+            transform.position += Vector3.up * moveSpeed * Time.deltaTime;
+        }
+
+        if (Keyboard.current.aKey.ReadValue() > 0.0f)
+        {
+            // Move player left
+            transform.position += Vector3.left * moveSpeed * Time.deltaTime;
+        }
+
+        if (Keyboard.current.sKey.ReadValue() > 0.0f)
+        {
+            // Move player down
+            transform.position += Vector3.down * moveSpeed * Time.deltaTime;
+        }
+
+        if (Keyboard.current.dKey.ReadValue() > 0.0f) 
+        {
+            // Move player right
+            transform.position += Vector3.right * moveSpeed * Time.deltaTime;
+        }
+    }
 }
