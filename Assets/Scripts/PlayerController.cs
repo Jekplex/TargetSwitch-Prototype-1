@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
 
     void playerMove()
     {
+        // W A S D
+
         if (Keyboard.current.wKey.ReadValue() > 0.0f)
         {
             // Move player up
