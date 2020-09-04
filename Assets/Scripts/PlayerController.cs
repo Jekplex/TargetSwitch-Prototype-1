@@ -6,43 +6,35 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 1f;
+    //public InputAction myInputActions;
 
-    // Keyboard and Mouse ONLY
+    public float moveSpeed = 1f;
+    
+    private Rigidbody2D rb;
+    private bool playerIsMoving;
+    
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     private void Update()
     {
-
-        playerMove();
-
+        
     }
 
-    void playerMove()
+    public void Move(InputAction.CallbackContext context)
     {
-        // W A S D
-
-        if (Keyboard.current.wKey.ReadValue() > 0.0f)
-        {
-            // Move player up
-            transform.position += Vector3.up * moveSpeed * Time.deltaTime;
-        }
-
-        if (Keyboard.current.aKey.ReadValue() > 0.0f)
-        {
-            // Move player left
-            transform.position += Vector3.left * moveSpeed * Time.deltaTime;
-        }
-
-        if (Keyboard.current.sKey.ReadValue() > 0.0f)
-        {
-            // Move player down
-            transform.position += Vector3.down * moveSpeed * Time.deltaTime;
-        }
-
-        if (Keyboard.current.dKey.ReadValue() > 0.0f) 
-        {
-            // Move player right
-            transform.position += Vector3.right * moveSpeed * Time.deltaTime;
-        }
+    
+        var targetPos = new Vector2(transform.position.x, transform.position.y);
+        var moveVector = context.ReadValue<Vector2>();
+    
+        targetPos += (moveVector * moveSpeed) * Time.deltaTime;
+    
+        rb.MovePosition(targetPos);
+     
+        Debug.Log(moveVector);
+    
     }
+
 }
