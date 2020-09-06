@@ -11,76 +11,85 @@ public class PlayerController : MonoBehaviour
     // The only way I see to bypass this issue is by hand coding
     // all inputs through this script.
 
-    //public InputActionReference myTest;
-
-    public float moveSpeed = 5f;
+    public float moveSpeed = 10.0f;
     
     private Rigidbody2D rb;
+
+    private Vector2 WASD_Input;
+    private Vector2 Mouse_Input;
+
+    private Camera mainCam;
     
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        
+        WASD_Input = new Vector2(0, 0);        
     }
 
     private void Update()
     {
-        PlayerMove();
+        WASD_Input_Calc();
+
+        Mouse_Input_Calc();
     }
 
-    void PlayerMove()
+    void WASD_Input_Calc()
     {
-        Vector2 temp = new Vector2(transform.position.x, transform.position.y);
-        //Vector2 targetPos;
+        WASD_Input = new Vector2(0, 0);
 
         if (Keyboard.current.wKey.isPressed)
         {
-            // Move player up
-            //targetPos = temp + (Vector2.up * moveSpeed);
-            //rb.MovePosition(targetPos + (Vector2.up * moveSpeed) * Time.deltaTime);
+            WASD_Input += Vector2.up;
         }
 
         if (Keyboard.current.aKey.isPressed)
         {
-            // Move player left
-            //targetPos += new Vector2(-1, 0);
+            WASD_Input += Vector2.left;
         }
 
         if (Keyboard.current.sKey.isPressed)
         {
-            // Move player down
-            //targetPos += new Vector2(0, -1);
+            WASD_Input += Vector2.down;
         }
 
         if (Keyboard.current.dKey.isPressed)
         {
-            // Move player right
-            //targetPos += new Vector2(1, 0);
-
+            WASD_Input += Vector2.right;
         }
 
-        //targetPos.Normalize();
-        //rb.MovePosition(targetPos);
+        //
 
-        //Debug.Log(targetMovePos);
+        if (WASD_Input == new Vector2(0, 0))
+        {
+            // Do nothing.
+        }
+        else
+        {
+            WASD_Input.Normalize();
+            //Debug.Log(WASD_Input);
 
+            MovePlayer(WASD_Input);
+        }
+        
+    }
+    
+    void Mouse_Input_Calc()
+    {
+        Mouse_Input = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
     }
 
-    //public void Move(InputAction.CallbackContext context)
-    //{
-    //    // Keyboard and mouse.
-    //
-    //    var targetPos = new Vector2(transform.position.x, transform.position.y);
-    //    var moveVector = context.ReadValue<Vector2>();
-    //
-    //    targetPos += (moveVector * moveSpeed) * Time.deltaTime;
-    //
-    //    rb.MovePosition(targetPos);
-    //
-    //    //Move(context);
-    //
-    // 
-    //    //Debug.Log(moveVector);
-    //
-    //}
+    void MovePlayer(Vector2 input)
+    {
+        var transformPos = new Vector2(transform.position.x, transform.position.y);
+
+        input *= moveSpeed;
+        input *= Time.deltaTime;
+
+        rb.MovePosition(transformPos += input);
+    }
+
+    // This code is so clean :D
+    // Currently only handles WASD Input.
 
 }
