@@ -12,16 +12,20 @@ public class PlayerController : MonoBehaviour
     // all inputs through this script.
 
     public float moveSpeed = 10.0f;
+
+    private GameObject AimIndicatorObj;
+    private Transform AimIndicatorSprite;
     
     private Rigidbody2D rb;
 
     private Vector2 WASD_Input;
-    private Vector2 Mouse_Input;
+    [SerializeField] private Vector2 Mouse_Input;
 
-    private Camera mainCam;
-    
     private void Start()
     {
+        AimIndicatorObj = transform.GetChild(0).gameObject; // GameObject
+        AimIndicatorSprite = AimIndicatorObj.transform.GetChild(0); // Transform
+
         rb = GetComponent<Rigidbody2D>();
         
         WASD_Input = new Vector2(0, 0);        
@@ -70,13 +74,35 @@ public class PlayerController : MonoBehaviour
             //Debug.Log(WASD_Input);
 
             MovePlayer(WASD_Input);
+
+            Set_AimIndicator();
         }
         
+
     }
     
     void Mouse_Input_Calc()
     {
         Mouse_Input = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+
+        Set_AimIndicator();
+    }
+
+    void Set_AimIndicator()
+    {
+        //Vector2 temp = new Vector2(0.4242641f, -0.4242641f);
+        //Vector2 temp = new Vector2(transform.position.x, transform.position.y + 10);
+
+        //var angle = Vector2.SignedAngle(Mouse_Input, temp);
+        //var angle = Vector2.SignedAngle(Mouse_Input, gameObject.transform.position);
+        
+        //AimIndicatorObj.transform.rotation = Quaternion.Euler(0, 0, -angle +90  /*+90*/);
+
+        // Having conflicts to use var or not...
+        // Is it more efficient to just declare it as a float as I know the output...
+        // Instead of letting the computer figure it out on compilation??
+        
+        // These are the real questions I think about.
     }
 
     void MovePlayer(Vector2 input)
