@@ -21,6 +21,14 @@ public class PlayerController : MonoBehaviour
     private Vector2 WASD_Input;
     [SerializeField] private Vector2 Mouse_Input;
 
+    public GameObject bulletPrefab;
+
+    //
+    private Vector2 playerToNorthVector;
+    private Vector2 playerToMouseVector;
+
+
+
     private void Start()
     {
         AimIndicatorObj = transform.GetChild(0).gameObject; // GameObject
@@ -34,6 +42,8 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         WASD_Input_Calc();
+
+        MousePos_Input_Calc();
 
         Mouse_Input_Calc();
     }
@@ -81,27 +91,50 @@ public class PlayerController : MonoBehaviour
 
     }
     
-    void Mouse_Input_Calc()
+    void MousePos_Input_Calc()
     {
         Mouse_Input = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
         Set_AimIndicator();
     }
 
+    void Mouse_Input_Calc()
+    {
+        
+        if (Mouse.current.leftButton.isPressed) 
+        {
+            // Shoot
+            Instantiate(bulletPrefab, AimIndicatorSprite.position, AimIndicatorSprite.rotation);
+            
+            // NEED TO FIX.
+            // There needs to be a cooldown inbetween instantiations of bullets.
+
+        }
+
+        if (Mouse.current.rightButton.isPressed)
+        {
+            // Pause or Special Heavy Attack (Something like rockets)
+
+
+        }
+
+    }
+
     void Set_AimIndicator()
     {
-        //Vector2 temp = new Vector2(0.4242641f, -0.4242641f);
-        //Vector2 temp = new Vector2(transform.position.x, transform.position.y + 10);
+        playerToNorthVector = new Vector2(transform.position.x, transform.position.y + 100);
 
-        //var angle = Vector2.SignedAngle(Mouse_Input, temp);
-        //var angle = Vector2.SignedAngle(Mouse_Input, gameObject.transform.position);
-        
-        //AimIndicatorObj.transform.rotation = Quaternion.Euler(0, 0, -angle +90  /*+90*/);
+        // PM = M - P
+        // ^ This means PlayerToMouse (Vector) = MousePos - PlayerPos
+        playerToMouseVector = new Vector2(Mouse_Input.x - transform.position.x, Mouse_Input.y - transform.position.y);
+
+        var angle = Vector2.SignedAngle(playerToNorthVector, playerToMouseVector);
+        AimIndicatorObj.transform.localRotation = Quaternion.Euler(0, 0, 135 + angle);
 
         // Having conflicts to use var or not...
         // Is it more efficient to just declare it as a float as I know the output...
         // Instead of letting the computer figure it out on compilation??
-        
+
         // These are the real questions I think about.
     }
 
