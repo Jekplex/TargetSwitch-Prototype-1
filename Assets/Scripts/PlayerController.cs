@@ -23,6 +23,10 @@ public class PlayerController : MonoBehaviour
 
     public GameObject bulletPrefab;
 
+    public float bulletCooldown = 0.5f;
+    private float _bulletCooldown;
+    private bool isBulletCooldownOn = false;
+
     //
     private Vector2 playerToNorthVector;
     private Vector2 playerToMouseVector;
@@ -36,16 +40,29 @@ public class PlayerController : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         
-        WASD_Input = new Vector2(0, 0);        
+        WASD_Input = new Vector2(0, 0);
+
+        _bulletCooldown = bulletCooldown;
     }
 
     private void Update()
     {
         WASD_Input_Calc();
+        // Worried that the above might need to go into FixedUpdate...
 
         MousePos_Input_Calc();
 
         Mouse_Input_Calc();
+
+        if (isBulletCooldownOn)
+        {
+            _bulletCooldown -= Time.deltaTime;
+
+            if (_bulletCooldown <= 0)
+            {
+                isBulletCooldownOn = false;      
+            }
+        }
     }
 
     void WASD_Input_Calc()
@@ -104,10 +121,15 @@ public class PlayerController : MonoBehaviour
         if (Mouse.current.leftButton.isPressed) 
         {
             // Shoot
-            Instantiate(bulletPrefab, AimIndicatorSprite.position, AimIndicatorSprite.rotation);
-            
-            // NEED TO FIX.
-            // There needs to be a cooldown inbetween instantiations of bullets.
+
+            // 
+            if (!isBulletCooldownOn)
+            {
+                Instantiate(bulletPrefab, AimIndicatorSprite.position, AimIndicatorSprite.rotation);
+
+                isBulletCooldownOn = true;
+                _bulletCooldown = bulletCooldown;
+            }
 
         }
 
