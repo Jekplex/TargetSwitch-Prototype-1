@@ -16,13 +16,15 @@ public class Spawner : MonoBehaviour
     private Vector2 randomRange;
     private Vector2 randomCoordinate;
 
+    public GameObject enemyParentObj;
+
     private void Start()
     {
         _spawnRate = spawnRate;
 
         origin = transform.position;
         range = transform.localScale / 2.0f;
-        RerollRandom();
+        RerollRandomPos();
     }
 
 
@@ -39,14 +41,16 @@ public class Spawner : MonoBehaviour
 
         if (_spawnRate <= 0)
         {
-            Instantiate(EnemiesToSpawn[0], randomCoordinate, Quaternion.identity);
+            int rng = UnityEngine.Random.Range(0, EnemiesToSpawn.Length);
 
-            RerollRandom();
+            Instantiate(EnemiesToSpawn[rng], randomCoordinate, Quaternion.identity, enemyParentObj.transform);
+
+            RerollRandomPos();
             _spawnRate = spawnRate;
         }
     }
 
-    void RerollRandom()
+    void RerollRandomPos()
     {
         randomRange = new Vector2(UnityEngine.Random.Range(-range.x, range.x),
                                   UnityEngine.Random.Range(-range.y, range.y));

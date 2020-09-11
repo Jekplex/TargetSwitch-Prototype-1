@@ -34,8 +34,6 @@ public class Bullet : MonoBehaviour
             //rb.MovePosition((Vector2)transform.position + Vector2.right * bulletSpeed * Time.deltaTime);
         }
 
-        
-
     }
 
     // OLD EXPERIMENTAL

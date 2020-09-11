@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 playerToNorthVector;
     private Vector2 playerToMouseVector;
 
-
+    // May need a public bool called controls to enable/disable controls in menus or when mouse is off the game.
 
     private void Start()
     {
@@ -136,7 +136,6 @@ public class PlayerController : MonoBehaviour
         if (Mouse.current.rightButton.isPressed)
         {
             // Pause or Special Heavy Attack (Something like rockets)
-
 
         }
 
