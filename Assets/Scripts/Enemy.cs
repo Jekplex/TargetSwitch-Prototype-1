@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D rb;
 
     private GameObject player;
+    private PlayerController playerController;
 
     private GameObject myGameMaster;
     private GameMaster gm;
@@ -35,6 +36,7 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         player = GameObject.FindGameObjectWithTag("Player");
+        playerController = player.GetComponent<PlayerController>();
 
         myGameMaster = GameObject.FindGameObjectWithTag("GameMaster");
         gm = myGameMaster.GetComponent<GameMaster>();
@@ -55,7 +57,9 @@ public class Enemy : MonoBehaviour
             Destroy(collision.gameObject);
             Destroy(gameObject);
 
-            gm.addRep(1, myEnemyType.ToString());
+            float dist = Vector2.Distance(playerController.GetLeftClickPlayerPos(), gameObject.transform.position);
+            gm.addRep(dist, myEnemyType.ToString());
+
             //Debug.Log("Player has killed : " + myEnemyType.ToString());
         }
     }

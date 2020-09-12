@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 playerToNorthVector;
     private Vector2 playerToMouseVector;
 
+    private Vector2 LeftClickPlayerPos;
+
     // May need a public bool called controls to enable/disable controls in menus or when mouse is off the game.
 
     private void Start()
@@ -125,6 +127,7 @@ public class PlayerController : MonoBehaviour
             // 
             if (!isBulletCooldownOn)
             {
+                LeftClickPlayerPos = transform.position;
                 Instantiate(bulletPrefab, AimIndicatorSprite.position, AimIndicatorSprite.rotation);
 
                 isBulletCooldownOn = true;
@@ -139,6 +142,11 @@ public class PlayerController : MonoBehaviour
 
         }
 
+    }
+
+    public Vector2 GetLeftClickPlayerPos()
+    {
+        return LeftClickPlayerPos;
     }
 
     void Set_AimIndicator()
