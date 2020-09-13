@@ -6,8 +6,9 @@ public class TargetImages : MonoBehaviour
 {
     private GameMaster gm;
 
-    [SerializeField] private GameObject Square;
-    [SerializeField] private GameObject Triangle;
+    [SerializeField] private GameObject child_Square;
+    [SerializeField] private GameObject child_Triangle;
+    [SerializeField] private GameObject child_Circle;
 
     void Start()
     {
@@ -38,6 +39,19 @@ public class TargetImages : MonoBehaviour
                 for (int i = 0; i < transform.childCount; i++)
                 {
                     if (i == 1)
+                    {
+                        transform.GetChild(i).gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        transform.GetChild(i).gameObject.SetActive(false);
+                    }
+                }
+                break;
+            case (Enemy.EnemyType)2:
+                for (int i = 0; i < transform.childCount; i++)
+                {
+                    if (i == 2)
                     {
                         transform.GetChild(i).gameObject.SetActive(true);
                     }

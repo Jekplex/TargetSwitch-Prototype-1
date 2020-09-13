@@ -99,8 +99,12 @@ public class GameMaster : MonoBehaviour
         // Every 5s switch targets (maybe?)
         yield return new WaitForSeconds(seconds);
 
+        // Change my mind on 5s rule but haven't implemented my other idea...
+        // My other idea is that the player has to destroy 2-8 of their given target before switching.
+        // Furthermore switching shouldn't switch to the same target as before.
+
         
-        int temp = UnityEngine.Random.Range(0, 2); // One or two - Square or Triangle.
+        int temp = UnityEngine.Random.Range(0, 3); // One or two - Square or Triangle.
         switch (temp)
         {
             case 0:
@@ -108,6 +112,9 @@ public class GameMaster : MonoBehaviour
                 break;
             case 1:
                 playerTarget = Enemy.EnemyType.Triangle;
+                break;
+            case 2:
+                playerTarget = Enemy.EnemyType.Circle;
                 break;
             default:
                 break;
