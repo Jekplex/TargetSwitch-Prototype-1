@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f54860dd1317dd848ba87a1e43c5fe24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 15
   Mouse_Input: {x: 0, y: 0}
   bulletPrefab: {fileID: 9015798901466815984, guid: 69683a57e5e50c04f8f5f76134e33408,
     type: 3}

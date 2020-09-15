@@ -34,6 +34,14 @@ public class GameMaster : MonoBehaviour
 
     private bool targetSwitchOn = false;
 
+    private int enemyLevel = 0;
+    [SerializeField] private float difficultyOffset;
+
+    private void Start()
+    {
+        difficultyOffset = 1.00005f;
+    }
+
 
     public void addRep(float distance, string enemyType)
     {
@@ -74,8 +82,16 @@ public class GameMaster : MonoBehaviour
 
     private void Update()
     {
-        enemyMoveSpeed *= 1.00005f;
-        mySpawner.spawnRate /= 1.00005f;
+        if (enemyLevel == 0 && enemyMoveSpeed < 3)
+        {
+            enemyMoveSpeed *= difficultyOffset;
+            mySpawner.spawnRate /= difficultyOffset;
+        }
+
+        //if (enemyLevel == 1 &&)
+        
+
+        Debug.Log(enemyMoveSpeed);
 
         // the fast enemy moveSpeed gets the fast spawnrate has to go aswell.
         // or else it feels like it's spawning only one that moves fast.
