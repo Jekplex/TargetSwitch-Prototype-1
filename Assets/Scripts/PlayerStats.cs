@@ -42,4 +42,26 @@ public class PlayerStats : MonoBehaviour
             }
         }
     }
+
+    public void HurtPlayer()
+    {
+        //
+        health = Mathf.Clamp(health - 1, 0, numOfHearts);
+        healthCheck();
+    }
+
+    public void HealPlayer()
+    {
+        health = Mathf.Clamp(health + 1, 0, numOfHearts);
+    }
+
+    private void healthCheck()
+    {
+        if (health == 0)
+        {
+            // End Game
+            Time.timeScale = 0.0f;
+
+        }
+    }
 }

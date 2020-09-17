@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
 
     private GameObject player;
     private PlayerController playerController;
+    private PlayerStats playerStats;
 
     private GameObject myGameMaster;
     private GameMaster gm;
@@ -37,6 +38,7 @@ public class Enemy : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
+        playerStats = player.GetComponent<PlayerStats>();
 
         myGameMaster = GameObject.FindGameObjectWithTag("GameMaster");
         gm = myGameMaster.GetComponent<GameMaster>();
@@ -62,11 +64,22 @@ public class Enemy : MonoBehaviour
 
             //Debug.Log("Player has killed : " + myEnemyType.ToString());
         }
+
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+            playerStats.HurtPlayer();
+
+            // Maybe make the player invinable
+            
+        }
     }
 
     public void SetMoveSpeed(float speed)
     {
         moveSpeed = speed;
     }
+
+
 
 }
