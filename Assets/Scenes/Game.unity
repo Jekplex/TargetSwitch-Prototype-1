@@ -317,6 +317,7 @@ MonoBehaviour:
   mySpawner: {fileID: 534039239}
   TargetImagesScript: {fileID: 1478492227}
   difficultyOffset: 0
+  maxNumOfEnemyToKill: 5
 --- !u!1 &424392012
 GameObject:
   m_ObjectHideFlags: 0

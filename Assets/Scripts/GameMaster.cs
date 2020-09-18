@@ -37,6 +37,9 @@ public class GameMaster : MonoBehaviour
     private int enemyLevel = 0;
     [SerializeField] private float difficultyOffset;
 
+    [SerializeField] private int numOfEnemyToKill;
+    public int maxNumOfEnemyToKill;
+
     private void Start()
     {
         difficultyOffset = 1.00005f;
@@ -51,6 +54,13 @@ public class GameMaster : MonoBehaviour
         if (enemyType == playerTarget.ToString())
         {
             playerRep += rep;
+            numOfEnemyToKill -= 1;
+
+            // Target Switch Mechanic Check - Continue...
+            if (numOfEnemyToKill <= 0)
+            {
+                targetSwitchOn = false;
+            }
         }
         else
         {
@@ -103,43 +113,105 @@ public class GameMaster : MonoBehaviour
 
         if (!targetSwitchOn)
         {
-            StartCoroutine(SwitchTarget(5f));
+            //StartCoroutine(SwitchTarget(5f));
+
+            // I want the player to have a target to kill.
+            // Once they kill a number determined number of that target, the target will switch.
+            // And continue.
+
+            targetSwitchOn = true;
+
+            // Setup for number of targets the player will have to destroy.
+            numOfEnemyToKill = UnityEngine.Random.Range(1, maxNumOfEnemyToKill+1); // 1-5 (inclusive)
+            // we'll use 6
+
+            SetRandomTarget(); // Not ideal because can be executed N number of times until result is not the same as current.
+            // Theres definately a better way to do this.
+
+
+            
         }
-    }
-
-    IEnumerator SwitchTarget(float seconds)
-    {
-
-        targetSwitchOn = true;
-
-        // Every 5s switch targets (maybe?)
-        yield return new WaitForSeconds(seconds);
-
-        // Change my mind on 5s rule but haven't implemented my other idea...
-        // My other idea is that the player has to destroy 2-8 of their given target before switching.
-        // Furthermore switching shouldn't switch to the same target as before.
 
         
+
+    }
+    
+    //void TargetSwitch
+    void SetRandomTarget()
+    {
         int temp = UnityEngine.Random.Range(0, 3); // One or two - Square or Triangle.
         switch (temp)
         {
             case 0:
-                playerTarget = Enemy.EnemyType.Square;
+                if (playerTarget == Enemy.EnemyType.Square)
+                {
+                    SetRandomTarget();
+                }
+                else
+                {
+                    playerTarget = Enemy.EnemyType.Square;
+                }
                 break;
             case 1:
-                playerTarget = Enemy.EnemyType.Triangle;
+                if (playerTarget == Enemy.EnemyType.Triangle)
+                {
+                    SetRandomTarget();
+                }
+                else
+                {
+                    playerTarget = Enemy.EnemyType.Triangle;
+                }
                 break;
             case 2:
-                playerTarget = Enemy.EnemyType.Circle;
+                if (playerTarget == Enemy.EnemyType.Circle)
+                {
+                    SetRandomTarget();
+                }
+                else
+                {
+                    playerTarget = Enemy.EnemyType.Circle;
+                }
                 break;
+                //playerTarget = Enemy.EnemyType.Circle;
             default:
                 break;
         }
-
-        // Change Target Image Respectfully.
         TargetImagesScript.SetDisplayTarget(playerTarget);
-
-        targetSwitchOn = false;
-
     }
+
+    //IEnumerator SwitchTarget(float seconds)
+    //{
+    //
+    //    targetSwitchOn = true;
+    //
+    //    // Every 5s switch targets (maybe?)
+    //    yield return new WaitForSeconds(seconds);
+    //
+    //    // Change my mind on 5s rule but haven't implemented my other idea...
+    //    // My other idea is that the player has to destroy 2-8 of their given target before switching.
+    //    // Furthermore switching shouldn't switch to the same target as before.
+    //
+    //    
+    //    int temp = UnityEngine.Random.Range(0, 3); // One or two - Square or Triangle.
+    //    switch (temp)
+    //    {
+    //        case 0:
+    //            playerTarget = Enemy.EnemyType.Square;
+    //            break;
+    //        case 1:
+    //            playerTarget = Enemy.EnemyType.Triangle;
+    //            break;
+    //        case 2:
+    //            playerTarget = Enemy.EnemyType.Circle;
+    //            break;
+    //        default:
+    //            break;
+    //    }
+    //
+    //    // Change Target Image Respectfully.
+    //    TargetImagesScript.SetDisplayTarget(playerTarget);
+    //
+    //    targetSwitchOn = false;
+    //
+    //}
 }
