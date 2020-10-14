@@ -173,9 +173,8 @@ public class PlayerController : MonoBehaviour
 
         input *= moveSpeed;
         input *= Time.deltaTime;
-        var newPos = transformPos + (input*moveSpeed)* Time.deltaTime;
 
-        rb.MovePosition(newPos);
+        rb.MovePosition(transformPos += input);
     }
 
     // This code is so clean :D
