@@ -40,11 +40,21 @@ public class GameMaster : MonoBehaviour
     [SerializeField] private int numOfEnemyToKill;
     public int maxNumOfEnemyToKill;
 
+    [Header("Sound Sources")]
+    public AudioSource TargetSwitchSound;
+
+    [Header("Extras")]
+    public GameObject shopPanel;
+    private Shop shopPanelScript;
+
     private void Start()
     {
         difficultyOffset = 1.00005f;
+
+        shopPanelScript = shopPanel.GetComponent<Shop>();
     }
 
+    private int count = 0;
 
     public void addRep(float distance, string enemyType)
     {
@@ -92,7 +102,7 @@ public class GameMaster : MonoBehaviour
 
     private void Update()
     {
-        if (enemyLevel == 0 && enemyMoveSpeed < 3)
+        if (enemyLevel == 0 && enemyMoveSpeed < 3 && shopPanelScript.getGameIsPaused() == false)
         {
             enemyMoveSpeed *= difficultyOffset;
             mySpawner.spawnRate /= difficultyOffset;
@@ -108,6 +118,7 @@ public class GameMaster : MonoBehaviour
         // this doesn't force the player to move in W and S direction making moving up and down completely reduntant.
 
         updateEnemySpeed();
+        
 
         // TODO: Implement that actual target switching.
 
@@ -120,6 +131,16 @@ public class GameMaster : MonoBehaviour
             // And continue.
 
             targetSwitchOn = true;
+
+            // Play "You're doing good sound" here...
+            count++;
+            if (count > 1)
+            {
+                TargetSwitchSound.Play();
+            }
+            
+            
+            
 
             // Setup for number of targets the player will have to destroy.
             numOfEnemyToKill = UnityEngine.Random.Range(1, maxNumOfEnemyToKill+1); // 1-5 (inclusive)

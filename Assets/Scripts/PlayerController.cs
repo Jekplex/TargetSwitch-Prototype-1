@@ -136,11 +136,11 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        if (Mouse.current.rightButton.isPressed)
-        {
-            // Pause or Special Heavy Attack (Something like rockets)
-
-        }
+        //if (Mouse.current.rightButton.isPressed)
+        //{
+        //    // Pause or Special Heavy Attack (Something like rockets)
+        //
+        //}
 
     }
 
