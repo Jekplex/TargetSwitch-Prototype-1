@@ -80,6 +80,37 @@ public class GameMaster : MonoBehaviour
         updateUI();
     }
 
+    public int getRep()
+    {
+        return playerRep;
+    }
+
+    public void removeRep(int amount)
+    {
+        //Debug.Log(distance);
+        //int rep = Mathf.RoundToInt(distance);
+        //
+        //if (enemyType == playerTarget.ToString())
+        //{
+        //    playerRep += rep;
+        //    numOfEnemyToKill -= 1;
+        //
+        //    // Target Switch Mechanic Check - Continue...
+        //    if (numOfEnemyToKill <= 0)
+        //    {
+        //        targetSwitchOn = false;
+        //    }
+        //}
+        //else
+        //{
+        //    playerRep -= rep;
+        //}
+
+        playerRep -= amount;
+
+        updateUI();
+    }
+
     void updateUI()
     {
         // Update Rep
@@ -106,12 +137,13 @@ public class GameMaster : MonoBehaviour
         {
             enemyMoveSpeed *= difficultyOffset;
             mySpawner.spawnRate /= difficultyOffset;
+            Debug.Log(enemyMoveSpeed);
         }
 
         //if (enemyLevel == 1 &&)
-        
 
-        Debug.Log(enemyMoveSpeed);
+        //Debug.Log(enemyMoveSpeed);
+
 
         // the fast enemy moveSpeed gets the fast spawnrate has to go aswell.
         // or else it feels like it's spawning only one that moves fast.
