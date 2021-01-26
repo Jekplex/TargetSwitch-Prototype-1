@@ -153,7 +153,6 @@ public class Shop : MonoBehaviour
             Debug.Log("Error! Not enough VBUCKS");
         }
 
-
     }
 
 
