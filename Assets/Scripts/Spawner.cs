@@ -48,6 +48,7 @@ public class Spawner : MonoBehaviour
             RerollRandomPos();
             _spawnRate = spawnRate;
         }
+
     }
 
     void RerollRandomPos()

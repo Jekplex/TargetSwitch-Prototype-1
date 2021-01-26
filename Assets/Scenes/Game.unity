@@ -645,6 +645,7 @@ GameObject:
   m_Component:
   - component: {fileID: 341350869}
   - component: {fileID: 341350870}
+  - component: {fileID: 341350871}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: GameMaster
@@ -689,6 +690,25 @@ MonoBehaviour:
   maxNumOfEnemyToKill: 5
   TargetSwitchSound: {fileID: 1776457064}
   shopPanel: {fileID: 710815684}
+  isDifficultyScaling: 0
+--- !u!114 &341350871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 341350868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0784381fbaa5a6444ad6f7e4250b45fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveIsOn: 1
+  waveTime: 10
+  timeInBetweenWaves: 10
+  gm: {fileID: 341350870}
+  spawner: {fileID: 534039237}
+  waveInProgress: 0
 --- !u!1 &366055505
 GameObject:
   m_ObjectHideFlags: 0

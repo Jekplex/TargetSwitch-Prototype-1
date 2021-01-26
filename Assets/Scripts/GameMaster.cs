@@ -47,6 +47,8 @@ public class GameMaster : MonoBehaviour
     public GameObject shopPanel;
     private Shop shopPanelScript;
 
+    public bool isDifficultyScaling;
+
     private void Start()
     {
         difficultyOffset = 1.00005f;
@@ -133,7 +135,7 @@ public class GameMaster : MonoBehaviour
 
     private void Update()
     {
-        if (enemyLevel == 0 && enemyMoveSpeed < 3 && shopPanelScript.getGameIsPaused() == false)
+        if (enemyLevel == 0 && enemyMoveSpeed < 3 && shopPanelScript.getGameIsPaused() == false && isDifficultyScaling)
         {
             enemyMoveSpeed *= difficultyOffset;
             mySpawner.spawnRate /= difficultyOffset;
