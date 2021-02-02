@@ -96,6 +96,7 @@ public class PlayerController : MonoBehaviour
         if (WASD_Input == new Vector2(0, 0))
         {
             // Do nothing.
+            MovePlayer(WASD_Input);
         }
         else
         {
@@ -169,12 +170,16 @@ public class PlayerController : MonoBehaviour
 
     void MovePlayer(Vector2 input)
     {
-        var transformPos = new Vector2(transform.position.x, transform.position.y);
+        //var transformPos = new Vector2(transform.position.x, transform.position.y);
+        //
+        //input *= moveSpeed;
+        //input *= Time.deltaTime;
+        //
+        //rb.MovePosition(transformPos += input);
 
-        input *= moveSpeed;
-        input *= Time.deltaTime;
-
-        rb.MovePosition(transformPos += input);
+        input = input * moveSpeed;
+        //input = input * moveSpeed * Time.deltaTime;
+        rb.velocity = input;
     }
 
     // This code is so clean :D

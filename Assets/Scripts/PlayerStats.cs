@@ -14,6 +14,9 @@ public class PlayerStats : MonoBehaviour
     public Sprite fullHeart;
     public Sprite emptyHeart;
 
+    [Header("Requirements")]
+    public ShopMenu shopScript;
+
     private void Update()
     {
         if (health > numOfHearts)
@@ -61,7 +64,7 @@ public class PlayerStats : MonoBehaviour
         {
             // End Game
             Time.timeScale = 0.0f;
-
+            shopScript.enabled = false;
         }
     }
 }

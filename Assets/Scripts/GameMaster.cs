@@ -45,7 +45,7 @@ public class GameMaster : MonoBehaviour
 
     [Header("Extras")]
     public GameObject shopPanel;
-    private Shop shopPanelScript;
+    private ShopMenu shopPanelScript;
 
     public bool isDifficultyScaling;
 
@@ -53,7 +53,7 @@ public class GameMaster : MonoBehaviour
     {
         difficultyOffset = 1.00005f;
 
-        shopPanelScript = shopPanel.GetComponent<Shop>();
+        shopPanelScript = shopPanel.GetComponent<ShopMenu>();
     }
 
     private int count = 0;
@@ -82,7 +82,7 @@ public class GameMaster : MonoBehaviour
         updateUI();
     }
 
-    public int getRep()
+    public int GetRep()
     {
         return playerRep;
     }
@@ -135,7 +135,7 @@ public class GameMaster : MonoBehaviour
 
     private void Update()
     {
-        if (enemyLevel == 0 && enemyMoveSpeed < 3 && shopPanelScript.getGameIsPaused() == false && isDifficultyScaling)
+        if (enemyLevel == 0 && enemyMoveSpeed < 3 && shopPanelScript.GetGameIsPaused() == false && isDifficultyScaling)
         {
             enemyMoveSpeed *= difficultyOffset;
             mySpawner.spawnRate /= difficultyOffset;

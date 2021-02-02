@@ -69,6 +69,8 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject);
             playerStats.HurtPlayer();
+            player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            // maybe send an knockback to the player?
 
             // Maybe make the player invinable
             
