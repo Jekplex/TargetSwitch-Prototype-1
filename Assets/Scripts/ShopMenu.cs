@@ -31,6 +31,7 @@ public class ShopMenu : MonoBehaviour
         shopPanel.transform.Find("Shop Items").gameObject.SetActive(false);
         shopPanel.transform.Find("Title").gameObject.SetActive(false);
         playerController.enabled = true;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     void OpenShop()
@@ -40,6 +41,7 @@ public class ShopMenu : MonoBehaviour
         shopPanel.transform.Find("Shop Items").gameObject.SetActive(true);
         shopPanel.transform.Find("Title").gameObject.SetActive(true);
         playerController.enabled = false;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     // Update is called once per frame
@@ -52,6 +54,7 @@ public class ShopMenu : MonoBehaviour
                 if (anim_rci.GetBool("isBlinking"))
                 {
                     anim_rci.SetBool("isBlinking", false);
+                    anim_rci.gameObject.GetComponent<FirstRightClickIndicator>().EnableSpawnerAndGameMaster();
                 }
 
                 OpenShop();

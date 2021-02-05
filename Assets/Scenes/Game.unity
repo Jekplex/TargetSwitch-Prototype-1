@@ -762,16 +762,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTarget: 0
   playerRep: 0
-  Rep_ValueText: {fileID: 1839267173}
+  repUI_valueText: {fileID: 1839267173}
   enemyMoveSpeed: 1
   mySpawner: {fileID: 534039239}
-  TargetImagesScript: {fileID: 1478492227}
-  difficultyOffset: 0
+  playerTargetUISpritesScript: {fileID: 1478492227}
   numOfEnemyToKill: 0
   maxNumOfEnemyToKill: 5
+  enemySpeedScalar: 1.0005
   TargetSwitchSound: {fileID: 1776457064}
   shopPanel: {fileID: 710815684}
-  isDifficultyScaling: 1
+  repGainScalar: 3
 --- !u!114 &341350871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2537,7 +2537,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff5e0a5f368771048b8a8c54dc4fb208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gm: {fileID: 341350870}
+  GameMaster: {fileID: 341350868}
+  Spawner: {fileID: 534039237}
 --- !u!114 &1070085080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3186,7 +3187,7 @@ GameObject:
   - component: {fileID: 1478492226}
   - component: {fileID: 1478492227}
   m_Layer: 5
-  m_Name: TargetImages
+  m_Name: TargetUISprites
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

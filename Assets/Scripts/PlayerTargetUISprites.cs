@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TargetImages : MonoBehaviour
+public class PlayerTargetUISprites : MonoBehaviour
 {
     private GameMaster gm;
 

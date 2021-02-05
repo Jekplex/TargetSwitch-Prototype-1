@@ -29,7 +29,7 @@ public class Wave : MonoBehaviour
         {
             timer = waveTime;
             waveInProgress = true;
-            gm.isDifficultyScaling = false;
+            //gm.isDifficultyScaling = false;
         }
     }
 
@@ -50,7 +50,7 @@ public class Wave : MonoBehaviour
 
                     // disable difficultyscaling & spawning
 
-                    gm.isDifficultyScaling = false;
+                    //gm.isDifficultyScaling = false;
                     spawner.SetActive(false);
                 }
             }
@@ -67,7 +67,7 @@ public class Wave : MonoBehaviour
 
                     // enable difficultyscaling & spawning
 
-                    gm.isDifficultyScaling = true;
+                    //gm.isDifficultyScaling = true;
                     spawner.SetActive(true);
 
                 }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    
     public enum EnemyType
     {
         Square,
@@ -19,7 +18,7 @@ public class Enemy : MonoBehaviour
     // I want the enemy to be killed when a player's bullets hit it.
 
     // I want the player to gain rep if target is inline with object
-    // else lose rep.
+    // else lose rep or nothing
 
     private float moveSpeed;
 
@@ -43,7 +42,7 @@ public class Enemy : MonoBehaviour
         myGameMaster = GameObject.FindGameObjectWithTag("GameMaster");
         gm = myGameMaster.GetComponent<GameMaster>();
 
-        moveSpeed = gm.enemyMoveSpeed;
+        moveSpeed = gm.GetEnemySpeed();
     }
 
     private void FixedUpdate()
@@ -60,7 +59,7 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
 
             float dist = Vector2.Distance(playerController.GetLeftClickPlayerPos(), gameObject.transform.position);
-            gm.addRep(dist, myEnemyType.ToString());
+            gm.EnemyKilled_AddOrRemoveRep(dist, myEnemyType.ToString());
 
             //Debug.Log("Player has killed : " + myEnemyType.ToString());
         }
