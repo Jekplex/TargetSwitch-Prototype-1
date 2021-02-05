@@ -358,7 +358,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -140, y: 124}
+  m_AnchoredPosition: {x: 0, y: 124}
   m_SizeDelta: {x: 220, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &100844929
@@ -1009,8 +1009,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gm: {fileID: 341350870}
   playerController: {fileID: 4494784799885572905}
-  UnlockShopButton: {fileID: 100844929}
-  UnlockShopPrice: 100
+  unlockShopButton: {fileID: 100844929}
+  unlockShopPrice: 100
+  upgradeMovementButton: {fileID: 964800537}
+  upgradeMovementPrice: 150
+  installAutoRepButton: {fileID: 1056509309}
+  installAutoRepPrice: 200
 --- !u!4 &452493057
 Transform:
   m_ObjectHideFlags: 0
@@ -1926,12 +1930,12 @@ GameObject:
   - component: {fileID: 964800538}
   - component: {fileID: 964800537}
   m_Layer: 5
-  m_Name: Upgrade Hyperdrive v1
+  m_Name: Upgrade Movement v1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &964800536
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1949,7 +1953,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -140, y: 84}
+  m_AnchoredPosition: {x: 0, y: 84}
   m_SizeDelta: {x: 220, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &964800537
@@ -1995,8 +1999,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 710815688}
-        m_MethodName: GottaGoFast
+      - m_Target: {fileID: 452493056}
+        m_MethodName: UpgradeMovement
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2355,7 +2359,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1056509308
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2373,7 +2377,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 140, y: 84}
+  m_AnchoredPosition: {x: 0, y: 44}
   m_SizeDelta: {x: 220, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1056509309
@@ -2419,8 +2423,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 710815688}
-        m_MethodName: GottaGoFast
+      - m_Target: {fileID: 452493056}
+        m_MethodName: _InstallAutoRep
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4820,7 +4824,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Upgrade Hyperdrive v1 | 80Rep
+  m_text: 'Upgrade Movement v1 | 150Rep
 
 '
   m_isRightToLeft: 0
@@ -4891,7 +4895,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1948088626}
-    characterCount: 30
+    characterCount: 29
     spriteCount: 0
     spaceCount: 5
     wordCount: 4

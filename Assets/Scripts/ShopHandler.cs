@@ -9,26 +9,35 @@ public class ShopHandler : MonoBehaviour
     public PlayerController playerController;
 
     [Header("Unlock Shop")]
-    public Button UnlockShopButton;
-    public int UnlockShopPrice;
+    public Button unlockShopButton;
+    public int unlockShopPrice;
+
+    [Header("Upgrade Movement")]
+    public Button upgradeMovementButton;
+    public int upgradeMovementPrice;
+
+    [Header("Install AutoRep")]
+    public Button installAutoRepButton;
+    public int installAutoRepPrice;
 
     private void Start()
     {
-        //
+        unlockShopButton.interactable = true;
+        upgradeMovementButton.interactable = false;
+        installAutoRepButton.interactable = false;
     }
-
 
     public void UnlockShopFunction()
     {
-        if (gm.GetRep() >= UnlockShopPrice)
+        if (gm.GetRep() >= unlockShopPrice)
         {
-            gm.removeRep(UnlockShopPrice);
-     
-            // reward
-            playerController.moveSpeed = playerController.moveSpeed + 1;
+            gm.removeRep(unlockShopPrice);
 
-            //disable
-            UnlockShopButton.interactable = false;
+            // reward
+            UnlockShopReward();
+
+            //disable button
+            DisableButtonViaInteractable(unlockShopButton);
         }
         else
         {
@@ -37,19 +46,54 @@ public class ShopHandler : MonoBehaviour
         }
     }
 
-    //public void UpgradeMovement()
-    //{
-    //
-    //}
-    //
-    //public void InstallAutoRep()
-    //{
-    //
-    //}
-    //
-    //public void DisableButton(Button button)
-    //{
-    //    button.interactable = false;
-    //}
+    void UnlockShopReward()
+    {
+        upgradeMovementButton.interactable = true;
+        installAutoRepButton.interactable = true;
+    }
+
+    public void UpgradeMovement()
+    {
+        if (gm.GetRep() >= upgradeMovementPrice)
+        {
+            gm.removeRep(upgradeMovementPrice);
+
+            // reward
+            playerController.moveSpeed = playerController.moveSpeed + 1;
+
+            //disable button
+            DisableButtonViaInteractable(upgradeMovementButton);
+        }
+        else
+        {
+            Debug.Log("Error! Not enough VBUCKS");
+            // Maybe play error sound.
+        }
+    }
+    
+    public void _InstallAutoRep()
+    {
+        if (gm.GetRep() >= installAutoRepPrice)
+        {
+            gm.removeRep(installAutoRepPrice);
+
+            // reward
+            // enable autorep generator.
+            Debug.Log("This hasn't been implemented yet...");
+
+            //disable button
+            DisableButtonViaInteractable(installAutoRepButton);
+        }
+        else
+        {
+            Debug.Log("Error! Not enough VBUCKS");
+            // Maybe play error sound.
+        }
+    }
+    
+    public void DisableButtonViaInteractable(Button button)
+    {
+        button.interactable = false;
+    }
 
 }
