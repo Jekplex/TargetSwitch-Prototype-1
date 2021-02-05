@@ -82,6 +82,12 @@ public class GameMaster : MonoBehaviour
         updateUI();
     }
 
+    public void addRep(int amount)
+    {
+        playerRep += amount;
+        updateUI();
+    }
+
     void updateUI()
     {
         // Update Rep
