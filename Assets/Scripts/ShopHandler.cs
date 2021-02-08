@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ShopHandler : MonoBehaviour
 {
@@ -19,12 +20,25 @@ public class ShopHandler : MonoBehaviour
     [Header("Install AutoRep")]
     public Button installAutoRepButton;
     public int installAutoRepPrice;
+    public GameObject autoRepGeneratorObject;
+
+    [Header("Complete Game")]
+    public Button completeGameButton;
+    public int completeGamePrice;
 
     private void Start()
     {
         unlockShopButton.interactable = true;
         upgradeMovementButton.interactable = false;
         installAutoRepButton.interactable = false;
+        completeGameButton.interactable = false;
+
+        autoRepGeneratorObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        CompleteGameCheckAndResolve();
     }
 
     public void UnlockShopFunction()
@@ -50,6 +64,19 @@ public class ShopHandler : MonoBehaviour
     {
         upgradeMovementButton.interactable = true;
         installAutoRepButton.interactable = true;
+    }
+
+    void CompleteGameCheckAndResolve()
+    {
+        if (
+            unlockShopButton.interactable == false &&
+            upgradeMovementButton.interactable == false &&
+            installAutoRepButton.interactable == false
+           )
+        {
+            // Make end game available
+            completeGameButton.interactable = true;
+        }
     }
 
     public void UpgradeMovement()
@@ -79,7 +106,7 @@ public class ShopHandler : MonoBehaviour
 
             // reward
             // enable autorep generator.
-            Debug.Log("This hasn't been implemented yet...");
+            autoRepGeneratorObject.SetActive(true);
 
             //disable button
             DisableButtonViaInteractable(installAutoRepButton);
@@ -90,7 +117,31 @@ public class ShopHandler : MonoBehaviour
             // Maybe play error sound.
         }
     }
-    
+
+    public void _CompleteGame()
+    {
+        if (gm.GetRep() >= completeGamePrice)
+        {
+            gm.removeRep(completeGamePrice);
+
+            // reward
+            // send user to end game scene.
+
+            //disable button
+            //DisableButtonViaInteractable(installAutoRepButton);
+            // Load next scene which should be end scene.
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+        }
+        else
+        {
+            Debug.Log("Error! Not enough VBUCKS");
+            // Maybe play error sound.
+        }
+    }
+
+
+
     public void DisableButtonViaInteractable(Button button)
     {
         button.interactable = false;

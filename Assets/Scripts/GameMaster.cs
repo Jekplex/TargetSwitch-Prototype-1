@@ -150,8 +150,21 @@ public class GameMaster : MonoBehaviour
             // Theres definately a better way to do this.
 
         }
-               
 
+        // If player has bad rep rating...
+        KillPlayerIfRepIsBelowNegative50();
+    }
+
+    public PlayerStats playerStats;
+
+    void KillPlayerIfRepIsBelowNegative50()
+    {
+        if (playerRep <= -50 )
+        {
+            // end game.
+            playerStats.KillPlayer();
+
+        }
     }
     
     //void TargetSwitch

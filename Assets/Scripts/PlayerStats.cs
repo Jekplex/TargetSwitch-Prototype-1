@@ -53,6 +53,12 @@ public class PlayerStats : MonoBehaviour
         healthCheck();
     }
 
+    public void KillPlayer()
+    {
+        health = 0;
+        healthCheck();
+    }
+
     public void HealPlayer()
     {
         health = Mathf.Clamp(health + 1, 0, numOfHearts);
@@ -65,6 +71,7 @@ public class PlayerStats : MonoBehaviour
             // End Game
             Time.timeScale = 0.0f;
             shopScript.enabled = false;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 }
