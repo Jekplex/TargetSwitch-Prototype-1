@@ -69,9 +69,17 @@ public class PlayerStats : MonoBehaviour
         if (health == 0)
         {
             // End Game
-            Time.timeScale = 0.0f;
-            shopScript.enabled = false;
-            Cursor.lockState = CursorLockMode.None;
+            EndTheGame();
         }
+    }
+
+    void EndTheGame()
+    {
+        Time.timeScale = 0.5f;
+        shopScript.enabled = false;
+        Cursor.lockState = CursorLockMode.None;
+        GetComponent<PlayerController>().enabled = false;
+
+
     }
 }
