@@ -95,6 +95,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myEnemyType: 2
+  particleSystem_Death: {fileID: 8121186143400956147, guid: c413e492927c76745a64b77ca85f32a2,
+    type: 3}
 --- !u!1 &3320500643616510811
 GameObject:
   m_ObjectHideFlags: 0

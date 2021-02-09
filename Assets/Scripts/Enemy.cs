@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour
     }
 
     public EnemyType myEnemyType;
+    public GameObject particleSystem_Death;
+
 
     // I want the enemy to move towards the player.
     
@@ -55,6 +57,9 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {
+
+            DoDeathExplosion();
+
             Destroy(collision.gameObject);
             Destroy(gameObject);
 
@@ -62,6 +67,7 @@ public class Enemy : MonoBehaviour
             gm.EnemyKilled_AddOrRemoveRep(dist, myEnemyType.ToString());
 
             //Debug.Log("Player has killed : " + myEnemyType.ToString());
+            
         }
 
         if (collision.gameObject.CompareTag("Player"))
@@ -79,6 +85,12 @@ public class Enemy : MonoBehaviour
     public void SetMoveSpeed(float speed)
     {
         moveSpeed = speed;
+    }
+
+    void DoDeathExplosion()
+    {
+        Instantiate(particleSystem_Death, transform.position, Quaternion.identity);
+        particleSystem_Death.GetComponent<ParticleSystem>().Play();
     }
 
 
