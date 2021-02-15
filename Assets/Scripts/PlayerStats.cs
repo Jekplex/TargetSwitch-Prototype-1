@@ -16,6 +16,12 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Requirements")]
     public ShopMenu shopScript;
+    private GameMaster gm;
+
+    private void Start()
+    {
+        gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<GameMaster>();
+    }
 
     private void Update()
     {
@@ -69,17 +75,11 @@ public class PlayerStats : MonoBehaviour
         if (health == 0)
         {
             // End Game
-            EndTheGame();
+
+            gm.DoPlayerHasDiedSequence();
+            //DoPlayerHasDiedSequence();
         }
     }
 
-    void EndTheGame()
-    {
-        Time.timeScale = 0.5f;
-        shopScript.enabled = false;
-        Cursor.lockState = CursorLockMode.None;
-        GetComponent<PlayerController>().enabled = false;
-
-
-    }
+    
 }

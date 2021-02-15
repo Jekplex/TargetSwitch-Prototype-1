@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour
 {
@@ -25,18 +26,28 @@ public class GameMaster : MonoBehaviour
 
     [Header("Extras")]
     public GameObject shopPanel;
-    private ShopMenu shopPanelScript;
+    private ShopMenu shopMenuScript;
 
     public float repGainScalar = 1f;
+
+    private GameObject playerDiedContainerObject;
 
     private void Start()
     {
         //difficultyOffset = 1.00005f;
 
-        shopPanelScript = shopPanel.GetComponent<ShopMenu>();
+        shopMenuScript = shopPanel.GetComponent<ShopMenu>();
+
+        GrabAndSetupPlayerDiedPanel();
 
         // Start scene with cursor locked in window.
         Cursor.lockState = CursorLockMode.Confined;
+    }
+
+    private void GrabAndSetupPlayerDiedPanel()
+    {
+        playerDiedContainerObject = GameObject.Find("PlayerDiedContainer");
+        playerDiedContainerObject.SetActive(false);
     }
 
     public float GetEnemySpeed()
@@ -111,7 +122,7 @@ public class GameMaster : MonoBehaviour
 
         if (storageToStoreTimeDeltaTimeToAllowProperScalingOfEnemySpeed >= 0.5f)
         {
-            if (shopPanelScript.GetGameIsPaused() == false)
+            if (shopMenuScript.GetGameIsPaused() == false)
             {
                 enemyMoveSpeed *= enemySpeedScalar;
                 mySpawner.spawnRate /= enemySpeedScalar;
@@ -210,4 +221,29 @@ public class GameMaster : MonoBehaviour
         playerTargetUISpritesScript.SetDisplayTarget(playerTarget);
     }
 
+    public void DoPlayerHasDiedSequence()
+    {
+        Time.timeScale = 0f;
+        shopMenuScript.enabled = false;
+        Cursor.lockState = CursorLockMode.None;
+        playerStats.GetComponent<PlayerController>().enabled = false;
+        playerDiedContainerObject.SetActive(true);
+
+
+    }
+
+    // extra public functions for the buttons on you died screen.
+
+    public void YouDied_Restart()
+    {
+        // reloads current scene.
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //Time.timeScale = 1f;
+
+    }
+
+    public void YouDied_Quit()
+    {
+        Application.Quit();
+    }
 }
