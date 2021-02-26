@@ -176,7 +176,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myEnemyType: 1
-  particleSystem_Death: {fileID: 8121186143400956147, guid: c413e492927c76745a64b77ca85f32a2,
+  particleSystem_Death_Square: {fileID: 8121186143400956147, guid: b4bb09c65f83fde4ea2b1f327052e5b1,
+    type: 3}
+  particleSystem_Death_Triangle: {fileID: 8121186143400956147, guid: 4f14a6951245e53488d8eefc83f869cb,
+    type: 3}
+  particleSystem_Death_Circle: {fileID: 8121186143400956147, guid: d2d627e0f8ae79a458eaec82737abe11,
+    type: 3}
+  circleChild1: {fileID: 2352486845303494555, guid: 427fa4b8ee93b84479971c51edcf457a,
+    type: 3}
+  circleChild2: {fileID: 4518614062583489237, guid: 64bc0dec8a5332e49831f9ae965a3d47,
     type: 3}
 --- !u!1 &6307623880091492440
 GameObject:

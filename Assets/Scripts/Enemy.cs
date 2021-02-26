@@ -12,11 +12,16 @@ public class Enemy : MonoBehaviour
     }
 
     public EnemyType myEnemyType;
-    public GameObject particleSystem_Death;
 
+    public GameObject particleSystem_Death_Square;
+    public GameObject particleSystem_Death_Triangle;
+    public GameObject particleSystem_Death_Circle;
+
+    public GameObject circleChild1;
+    public GameObject circleChild2;
 
     // I want the enemy to move towards the player.
-    
+
     // I want the enemy to be killed when a player's bullets hit it.
 
     // I want the player to gain rep if target is inline with object
@@ -89,8 +94,26 @@ public class Enemy : MonoBehaviour
 
     void DoDeathExplosion()
     {
-        Instantiate(particleSystem_Death, transform.position, Quaternion.identity);
-        particleSystem_Death.GetComponent<ParticleSystem>().Play();
+        if (myEnemyType == EnemyType.Square)
+        {
+            Instantiate(particleSystem_Death_Square, transform.position, Quaternion.identity);
+            particleSystem_Death_Square.GetComponent<ParticleSystem>().Play();
+        }
+        else if (myEnemyType == EnemyType.Triangle)
+        {
+            Instantiate(particleSystem_Death_Triangle, transform.position, Quaternion.identity);
+            particleSystem_Death_Triangle.GetComponent<ParticleSystem>().Play();
+        }
+        else if (myEnemyType == EnemyType.Circle)
+        {
+            Instantiate(particleSystem_Death_Circle, transform.position, Quaternion.identity);
+            particleSystem_Death_Circle.GetComponent<ParticleSystem>().Play();
+
+            // Also spawn childs
+            Instantiate(circleChild1, (Vector2)transform.position + new Vector2(0.2f,0), Quaternion.identity);
+            Instantiate(circleChild2, (Vector2)transform.position + new Vector2(-0.2f, 0), Quaternion.identity);
+        }
+            
     }
 
 

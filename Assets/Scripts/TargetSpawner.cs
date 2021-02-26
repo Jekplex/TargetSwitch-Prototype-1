@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+public class TargetSpawner : MonoBehaviour
 {
 
     public float spawnRate = 1f; // "How many times do you want to spawn a new object per second"

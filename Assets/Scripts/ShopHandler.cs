@@ -26,6 +26,9 @@ public class ShopHandler : MonoBehaviour
     public Button completeGameButton;
     public int completeGamePrice;
 
+
+    //List<Button> upgradeButtons;
+
     private void Start()
     {
         unlockShopButton.interactable = true;
@@ -34,6 +37,12 @@ public class ShopHandler : MonoBehaviour
         completeGameButton.interactable = false;
 
         autoRepGeneratorObject.SetActive(false);
+
+        // setup upgrade button list
+        //upgradeButtons.Add(upgradeMovementButton);
+        //upgradeButtons.Add(installAutoRepButton);
+        //upgradeButtons.Add(completeGameButton);
+
     }
 
     private void Update()
@@ -78,6 +87,24 @@ public class ShopHandler : MonoBehaviour
             completeGameButton.interactable = true;
         }
     }
+
+    // TO BE WORKED ON...
+    //void CheckIfIndicatorNeedToAppearAndResolve()
+    //{
+    //    // loop through list of enabled buttons.
+    //    // check against player rep
+    //    // if player rep is above atleast one of them... show indicator.
+    //
+    //    foreach(var item in upgradeButtons)
+    //    {
+    //        if (item.enabled)
+    //        {
+    //
+    //        }
+    //    }
+    //
+    //    //if (gm.GetRep() >= )
+    //}
 
     public void UpgradeMovement()
     {

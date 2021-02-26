@@ -11,7 +11,7 @@ public class GameMaster : MonoBehaviour
     [SerializeField] private int playerRep;
     public TextMeshProUGUI repUI_valueText;
     [SerializeField] private float enemyMoveSpeed = 1f;
-    public Spawner mySpawner;
+    public TargetSpawner mySpawner;
     public PlayerTargetUISprites playerTargetUISpritesScript;
     [SerializeField] private int numOfEnemyToKill;
     public int maxNumOfEnemyToKill;
@@ -30,7 +30,8 @@ public class GameMaster : MonoBehaviour
 
     public float repGainScalar = 1f;
 
-    private GameObject playerDiedContainerObject;
+    [Header("Canvas")]
+    public GameObject playerDiedContainerObject;
 
     private void Start()
     {
@@ -38,16 +39,9 @@ public class GameMaster : MonoBehaviour
 
         shopMenuScript = shopPanel.GetComponent<ShopMenu>();
 
-        GrabAndSetupPlayerDiedPanel();
 
         // Start scene with cursor locked in window.
         Cursor.lockState = CursorLockMode.Confined;
-    }
-
-    private void GrabAndSetupPlayerDiedPanel()
-    {
-        playerDiedContainerObject = GameObject.Find("PlayerDiedContainer");
-        playerDiedContainerObject.SetActive(false);
     }
 
     public float GetEnemySpeed()

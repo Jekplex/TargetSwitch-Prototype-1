@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AutoRepGenerator : MonoBehaviour
+public class AutoRepMiner : MonoBehaviour
 {
     
     public float numOfSecondsForTimeInbetweenEachPopOfRep = 1f;
@@ -16,6 +16,8 @@ public class AutoRepGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameObject.SetActive(false);
+
         numOfSecondsUntilPopOfRep = numOfSecondsForTimeInbetweenEachPopOfRep;
     }
 
