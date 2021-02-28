@@ -72,16 +72,9 @@ public class Shop : MonoBehaviour
         UnlockShopButton.interactable = true;
     }
 
-    //void SetupUnlockShopButton()
-    //{
-    //    var listOfAllButtons = UnlockShopButton.gameObject.transform.parent.GetComponentsInChildren<Button>();
-    //
-    //    foreach (var button in listOfAllButtons)
-    //    {
-    //        button.interactable = false;
-    //    }
-    //
-    //    UnlockShopButton.interactable = true;
-    //}
+    public bool GetIsPaused()
+    {
+        return isPaused;
+    }
 
 }

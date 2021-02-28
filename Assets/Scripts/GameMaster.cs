@@ -26,18 +26,20 @@ public class GameMaster : MonoBehaviour
 
     [Header("Extras")]
     public GameObject shopPanel;
-    private ShopMenu shopMenuScript;
+    private Shop shopScript;
 
     public float repGainScalar = 1f;
 
     [Header("Canvas")]
     public GameObject playerDiedContainerObject;
 
+    public GameObject AutoRepObj;
+
     private void Start()
     {
         //difficultyOffset = 1.00005f;
 
-        shopMenuScript = shopPanel.GetComponent<ShopMenu>();
+        shopScript = GameObject.Find("Shop").GetComponent<Shop>();
 
 
         // Start scene with cursor locked in window.
@@ -116,7 +118,7 @@ public class GameMaster : MonoBehaviour
 
         if (storageToStoreTimeDeltaTimeToAllowProperScalingOfEnemySpeed >= 0.5f)
         {
-            if (shopMenuScript.GetGameIsPaused() == false)
+            if (shopScript.GetIsPaused() == false)
             {
                 enemyMoveSpeed *= enemySpeedScalar;
                 mySpawner.spawnRate /= enemySpeedScalar;
@@ -218,10 +220,11 @@ public class GameMaster : MonoBehaviour
     public void DoPlayerHasDiedSequence()
     {
         Time.timeScale = 0f;
-        shopMenuScript.enabled = false;
+        shopScript.enabled = false;
         Cursor.lockState = CursorLockMode.None;
         playerStats.GetComponent<PlayerController>().enabled = false;
         playerDiedContainerObject.SetActive(true);
+        
 
 
     }
@@ -239,5 +242,12 @@ public class GameMaster : MonoBehaviour
     public void YouDied_Quit()
     {
         Application.Quit();
+    }
+
+    //
+
+    public void EnableAutoRep()
+    {
+        AutoRepObj.SetActive(true);
     }
 }

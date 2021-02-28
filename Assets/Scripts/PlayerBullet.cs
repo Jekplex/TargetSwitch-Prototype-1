@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class PlayerBullet : MonoBehaviour
 {
     public float bulletSpeed = 5f;
     public float timeUntilDeath = 3f;
@@ -35,27 +35,5 @@ public class Bullet : MonoBehaviour
         }
 
     }
-
-    // OLD EXPERIMENTAL
-    //
-    // Check if out of bounds.
-    // If true then destroy safely.
-    //bool bulletOutOfBounds()
-    //{
-    //    if (
-    //        transform.position.x > 6 || transform.position.x > -6
-    //        ||
-    //        transform.position.y > 6 || transform.position.y > -6
-    //        )
-    //    {
-    //        return true;
-    //    }
-    //    else
-    //    {
-    //        return false;
-    //    }
-    //
-    //    
-    //}
 
 }

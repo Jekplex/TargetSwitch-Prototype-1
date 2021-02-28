@@ -86,7 +86,7 @@ public class ShopItemDisplay : MonoBehaviour
 
             void InstallAutoRep()
             {
-                GameObject.Find("Auto Rep Miner").SetActive(true);
+                gm.EnableAutoRep();
             }
 
             void WinGame()

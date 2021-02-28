@@ -9,6 +9,7 @@ public class CircleChild : MonoBehaviour
     private Transform player;
     private Rigidbody2D rb2d;
     private PlayerStats playerStats;
+    private GameMaster gm;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +17,12 @@ public class CircleChild : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         playerStats = player.GetComponent<PlayerStats>();
         playerHealSoundSource = GameObject.Find("Player Healed Sound").GetComponent<AudioSource>();
+        
+    }
+
+    private void Awake()
+    {
+        gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<GameMaster>();
     }
 
     // Update is called once per frame
@@ -31,8 +38,24 @@ public class CircleChild : MonoBehaviour
 
             Destroy(collision.gameObject);
             Destroy(gameObject);
-            playerStats.HealPlayer();
-            playerHealSoundSource.Play();
+
+            // Coin toss to get healed...
+            var randomNumberToDetermineIfPlayerGetHealed = Random.Range(0f, 1f);
+            if (randomNumberToDetermineIfPlayerGetHealed > 0.5f)
+            {
+                playerStats.HealPlayer();
+                playerHealSoundSource.Play();
+            }
+            else
+            {
+                if (gm.enabled)
+                {
+                    gm.addRep(1);
+                }
+
+            }
+
+
 
         }
 
@@ -47,4 +70,5 @@ public class CircleChild : MonoBehaviour
 
         }
     }
+
 }

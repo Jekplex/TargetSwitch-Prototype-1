@@ -186,6 +186,9 @@ MonoBehaviour:
     type: 3}
   circleChild2: {fileID: 4518614062583489237, guid: 64bc0dec8a5332e49831f9ae965a3d47,
     type: 3}
+  triangleBulletPrefab: {fileID: 5525786342082116042, guid: 8e08fbfc195323d479c8891c7ee09eda,
+    type: 3}
+  triangleTimeBetweenShots: 3
 --- !u!1 &6307623880091492440
 GameObject:
   m_ObjectHideFlags: 0
