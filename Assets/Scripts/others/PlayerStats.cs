@@ -7,6 +7,7 @@ public class PlayerStats : MonoBehaviour
 {
     // Blackthornprod's Health/Heart System.
 
+    public bool isHeartInScene = true;
     public int health;
     public int numOfHearts;
 
@@ -18,38 +19,49 @@ public class PlayerStats : MonoBehaviour
     public ShopMenu shopScript;
     private GameMaster gm;
 
+   
+
     private void Start()
     {
-        gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<GameMaster>();
+        if (GameObject.FindGameObjectWithTag("GameMaster") != null)
+        {
+            gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<GameMaster>();
+        }
+        
     }
 
     private void Update()
     {
-        if (health > numOfHearts)
+        if (isHeartInScene)
         {
-            health = numOfHearts;
-        }
-
-        for (int i = 0; i < hearts.Length; i++)
-        {
-            if(i < health)
+            if (health > numOfHearts)
             {
-                hearts[i].sprite = fullHeart;
-            }
-            else
-            {
-                hearts[i].sprite = emptyHeart;
+                health = numOfHearts;
             }
 
-            if (i < numOfHearts)
+            for (int i = 0; i < hearts.Length; i++)
             {
-                hearts[i].enabled = true;
-            }
-            else
-            {
-                hearts[i].enabled = false;
+                if (i < health)
+                {
+                    hearts[i].sprite = fullHeart;
+                }
+                else
+                {
+                    hearts[i].sprite = emptyHeart;
+                }
+
+                if (i < numOfHearts)
+                {
+                    hearts[i].enabled = true;
+                }
+                else
+                {
+                    hearts[i].enabled = false;
+                }
             }
         }
+
+        
     }
 
     public void HurtPlayer()

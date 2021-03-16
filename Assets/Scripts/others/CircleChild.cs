@@ -29,6 +29,7 @@ public class CircleChild : MonoBehaviour
     void Update()
     {
         transform.position = Vector2.MoveTowards(transform.position, player.position, 0.5f * Time.deltaTime);
+        // this needs to be scaled with scalar.
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -39,30 +40,16 @@ public class CircleChild : MonoBehaviour
             Destroy(collision.gameObject);
             Destroy(gameObject);
 
-            // Coin toss to get healed...
-            var randomNumberToDetermineIfPlayerGetHealed = Random.Range(0f, 1f);
-            if (randomNumberToDetermineIfPlayerGetHealed > 0.5f)
-            {
-                playerStats.HealPlayer();
-                playerHealSoundSource.Play();
-            }
-            else
-            {
-                if (gm.enabled)
-                {
-                    gm.addRep(1);
-                }
-
-            }
-
-
+            playerStats.HealPlayer();
+            playerHealSoundSource.Play();
 
         }
 
         if (collision.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
-            playerStats.HurtPlayer();
+            playerStats.HealPlayer();
+            playerHealSoundSource.Play();
             player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             // maybe send an knockback to the player?
 

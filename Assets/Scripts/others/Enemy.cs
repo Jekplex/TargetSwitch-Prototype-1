@@ -150,7 +150,7 @@ public class Enemy : MonoBehaviour
             if (randomNumberToDetermineIfPlayerGetHealed > 0.5f)
             {
                 Instantiate(circleChild1, (Vector2)transform.position + new Vector2(0.2f, 0), Quaternion.identity);
-                Instantiate(circleChild2, (Vector2)transform.position + new Vector2(-0.2f, 0), Quaternion.identity);
+                //Instantiate(circleChild2, (Vector2)transform.position + new Vector2(-0.2f, 0), Quaternion.identity);
             }
             
         }

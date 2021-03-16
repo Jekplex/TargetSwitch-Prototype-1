@@ -5330,11 +5330,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2352486845303494558, guid: 427fa4b8ee93b84479971c51edcf457a,
-        type: 3}
-      propertyPath: playerHealSoundSource
-      value: 
-      objectReference: {fileID: 2123164867}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 427fa4b8ee93b84479971c51edcf457a, type: 3}
 --- !u!1001 &3835777316610396951
