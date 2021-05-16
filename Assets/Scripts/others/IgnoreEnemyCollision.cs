@@ -5,6 +5,7 @@ using UnityEngine;
 public class IgnoreEnemyCollision : MonoBehaviour
 {
     public bool destroyPlayerBulletOnCollision = false;
+    //public bool reboundBullets = false;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -12,11 +13,11 @@ public class IgnoreEnemyCollision : MonoBehaviour
         // It's annoying.
         // This is what i have to do instead... GRR
 
-        if (collision.gameObject.layer == 8) // 8 - Enemy Layer
-        {
-            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-            return;
-        }
+        //if (collision.gameObject.layer == 8) // 8 - Enemy Layer
+        //{
+        //    Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        //    return;
+        //}
 
         if (destroyPlayerBulletOnCollision)
         {
@@ -25,5 +26,6 @@ public class IgnoreEnemyCollision : MonoBehaviour
                 Destroy(collision.gameObject);
             }
         }
+
     }
 }

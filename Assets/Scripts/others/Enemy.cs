@@ -101,6 +101,9 @@ public class Enemy : MonoBehaviour
 
             DoDeathExplosion();
 
+            Sleep();
+                        
+
             Destroy(collision.gameObject);
             Destroy(gameObject);
 
@@ -108,7 +111,9 @@ public class Enemy : MonoBehaviour
             gm.EnemyKilled_AddOrRemoveRep(dist, myEnemyType.ToString());
 
             //Debug.Log("Player has killed : " + myEnemyType.ToString());
+
             
+
         }
 
         if (collision.gameObject.CompareTag("Player"))
@@ -155,6 +160,20 @@ public class Enemy : MonoBehaviour
             
         }
             
+    }
+
+    IEnumerator SleepFor20ms()
+    {
+        yield return new WaitForSecondsRealtime(0.02f);
+    }
+
+    void Sleep()
+    {
+        Time.timeScale = 0f;
+
+        StartCoroutine(SleepFor20ms());
+
+        Time.timeScale = 1f;
     }
 
 

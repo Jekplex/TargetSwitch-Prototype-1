@@ -27,11 +27,17 @@ public class PlayerController : MonoBehaviour
     private float _bulletCooldown;
     private bool isBulletCooldownOn = false;
 
+    public float fireKnockbackStrength = 0.01f;
+
     //
     private Vector2 playerToNorthVector;
     private Vector2 playerToMouseVector;
 
     private Vector2 LeftClickPlayerPos;
+
+    public CameraShake camShake;
+
+    public Camera cam2;
 
     // May need a public bool called controls to enable/disable controls in menus or when mouse is off the game.
 
@@ -54,7 +60,7 @@ public class PlayerController : MonoBehaviour
 
         MousePos_Input_Calc();
 
-        Mouse_Input_Calc();
+        MouseButton_Input_Calc();
 
         if (isBulletCooldownOn)
         {
@@ -69,6 +75,7 @@ public class PlayerController : MonoBehaviour
 
     void WASD_Input_Calc()
     {
+        rb.velocity = Vector2.zero;
         WASD_Input = new Vector2(0, 0);
 
         if (Keyboard.current.wKey.isPressed)
@@ -113,12 +120,12 @@ public class PlayerController : MonoBehaviour
     
     void MousePos_Input_Calc()
     {
-        Mouse_Input = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        Mouse_Input = cam2.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
         Set_AimIndicator();
     }
 
-    void Mouse_Input_Calc()
+    void MouseButton_Input_Calc()
     {
         
         if (Mouse.current.leftButton.isPressed) 
@@ -130,6 +137,19 @@ public class PlayerController : MonoBehaviour
             {
                 LeftClickPlayerPos = transform.position;
                 Instantiate(bulletPrefab, AimIndicatorSprite.position, AimIndicatorSprite.rotation);
+
+                //rb.velocity = Vector2.zero;
+
+                //knockback
+                //rb.AddForce((Vector2.zero - (Mouse_Input * 2)) * fireKnockbackStrength, ForceMode2D.Impulse);
+                //var temp = (Vector2)transform.position - Mouse_Input;
+                //transform.position = Vector2.ClampMagnitude(temp, 1f) * fireKnockbackStrength;
+                    //(Vector2)transform.position - (Vector2.ClampMagnitude(Mouse_Input, 1f));
+
+                
+
+                //cam shake?
+                //camShake.ShakeCamera(1, 0.1f);
 
                 isBulletCooldownOn = true;
                 _bulletCooldown = bulletCooldown;
@@ -180,6 +200,7 @@ public class PlayerController : MonoBehaviour
         input = input * moveSpeed;
         //input = input * moveSpeed * Time.deltaTime;
         rb.velocity = input;
+        //
     }
 
     // This code is so clean :D

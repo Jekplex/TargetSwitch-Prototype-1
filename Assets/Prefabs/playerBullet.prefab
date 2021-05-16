@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3322359239065177945}
   - component: {fileID: 8800061270932606910}
   - component: {fileID: 1356442246059562317}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PS-BulletTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4766,7 +4766,8 @@ GameObject:
   - component: {fileID: 9015798901466815986}
   - component: {fileID: 9015798901466815985}
   - component: {fileID: 1015405674468069125}
-  m_Layer: 0
+  - component: {fileID: 6493818462425052234}
+  m_Layer: 11
   m_Name: playerBullet
   m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
@@ -4878,3 +4879,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
+--- !u!50 &6493818462425052234
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9015798901466815984}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

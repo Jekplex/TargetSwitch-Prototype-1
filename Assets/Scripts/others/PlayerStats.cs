@@ -19,7 +19,7 @@ public class PlayerStats : MonoBehaviour
     public ShopMenu shopScript;
     private GameMaster gm;
 
-   
+    public CameraShake camShake;
 
     private void Start()
     {
@@ -69,6 +69,7 @@ public class PlayerStats : MonoBehaviour
         //
         health = Mathf.Clamp(health - 1, 0, numOfHearts);
         healthCheck();
+        camShake.ShakeCamera(2f, 0.5f);
     }
 
     public void KillPlayer()

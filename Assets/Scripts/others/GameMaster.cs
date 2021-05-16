@@ -35,6 +35,8 @@ public class GameMaster : MonoBehaviour
 
     public GameObject AutoRepObj;
 
+    public Animator targetPanel_anim;
+
     private void Start()
     {
         //difficultyOffset = 1.00005f;
@@ -215,6 +217,9 @@ public class GameMaster : MonoBehaviour
                 break;
         }
         playerTargetUISpritesScript.SetDisplayTarget(playerTarget);
+
+        // trigger blink trigger for targetpanel
+        targetPanel_anim.SetTrigger("Blink");
     }
 
     public void DoPlayerHasDiedSequence()
